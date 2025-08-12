@@ -443,4 +443,4 @@ Per problemi o domande:
 
 ---
 
-**Sviluppato con ❤️ per la comunità automotive italiana**
+**Sviluppato con ❤️**

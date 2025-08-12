@@ -1,0 +1,36 @@
+{
+  "name": "car-rental-bot",
+  "version": "1.0.0",
+  "description": "Bot per monitoraggio offerte noleggio auto a lungo termine con notifiche Discord",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "manual": "node src/index.js --manual",
+    "test-discord": "node src/index.js --test-discord",
+    "help": "node src/index.js --help"
+  },
+  "keywords": [
+    "car-rental",
+    "web-scraping",
+    "discord-bot",
+    "playwright",
+    "automation"
+  ],
+  "author": "Lorenzo Padovani",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.40.0",
+    "discord.js": "^14.14.1",
+    "node-cron": "^3.0.3",
+    "dotenv": "^16.3.1",
+    "fs-extra": "^11.1.1",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

@@ -67,13 +67,16 @@ class Scheduler {
       }
 
       // Raggruppa le offerte per brand e modello
-      const groupedOffers = this.carScraper.groupOffersByBrand(allOffers);
+      // Confronta con offerte precedenti per rilevare cambi prezzo
+      const comparedOffers = await dataManager.compareWithPrevious(allOffers);
+      
+      const groupedOffers = this.carScraper.groupOffersByBrand(comparedOffers);
       const bestOffers = this.carScraper.getBestOffers(groupedOffers);
 
-      // Salva i dati
-      await dataManager.saveOffers(allOffers);
+      // Salva i dati (con le informazioni di confronto)
+      await dataManager.saveOffers(comparedOffers);
 
-      // Invia la notifica Discord
+      // Invia la notifica Discord con indicatori di variazione
       const discordSuccess = await discordNotifier.sendOffers(bestOffers);
       
       if (!discordSuccess) {

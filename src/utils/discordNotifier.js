@@ -159,8 +159,17 @@ class DiscordNotifier {
         const offerInfo = models[model];
         const bestOffer = offerInfo.bestOffer;
         
-        // Formatta la riga dell'offerta
+        // Formatta la riga dell'offerta con icone per variazioni di prezzo
         let offerLine = `**${model}** • €${bestOffer.price}/mese`;
+        
+        // Aggiungi indicatori di variazione prezzo
+        if (bestOffer.isNew || bestOffer.priceChange === 'new') {
+          offerLine += ` 🆕`;
+        } else if (bestOffer.priceChange === 'increased' && bestOffer.priceChangeAmount > 0) {
+          offerLine += ` 🔺 +€${bestOffer.priceChangeAmount}`;
+        } else if (bestOffer.priceChange === 'decreased' && bestOffer.priceChangeAmount > 0) {
+          offerLine += ` 🔻 -€${bestOffer.priceChangeAmount}`;
+        }
         
         // Aggiungi anticipo se presente (per Ayvens)
         if (bestOffer.anticipo) {
@@ -175,6 +184,16 @@ class DiscordNotifier {
           const otherOffers = offerInfo.allOffers.slice(1, 3); // Mostra al massimo 2 offerte aggiuntive
           for (const offer of otherOffers) {
             let otherLine = `└ €${offer.price}/mese`;
+            
+            // Aggiungi indicatori di variazione prezzo anche per offerte secondarie
+            if (offer.isNew || offer.priceChange === 'new') {
+              otherLine += ` 🆕`;
+            } else if (offer.priceChange === 'increased' && offer.priceChangeAmount > 0) {
+              otherLine += ` 🔺 +€${offer.priceChangeAmount}`;
+            } else if (offer.priceChange === 'decreased' && offer.priceChangeAmount > 0) {
+              otherLine += ` 🔻 -€${offer.priceChangeAmount}`;
+            }
+            
             if (offer.anticipo) {
               otherLine += ` (anticipo ${offer.anticipo})`;
             }

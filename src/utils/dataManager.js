@@ -67,6 +67,97 @@ class DataManager {
     }
   }
 
+  async compareWithPrevious(newOffers) {
+    try {
+      logger.info('🔍 Confronto offerte con storico precedente...');
+      
+      // Carica offerte precedenti
+      const previousOffers = await this.loadOffers();
+      
+      if (previousOffers.length === 0) {
+        logger.info('📝 Prima esecuzione: tutte le offerte sono nuove');
+        return newOffers.map(offer => ({
+          ...offer,
+          isNew: true,
+          priceChange: null,
+          priceChangeAmount: 0
+        }));
+      }
+      
+      // Crea mappa delle offerte precedenti per confronto veloce
+      const previousMap = new Map();
+      for (const offer of previousOffers) {
+        const key = `${offer.brand}-${offer.model}`;
+        previousMap.set(key, offer);
+      }
+      
+      // Confronta ogni nuova offerta
+      const comparedOffers = newOffers.map(newOffer => {
+        const key = `${newOffer.brand}-${newOffer.model}`;
+        const previousOffer = previousMap.get(key);
+        
+        if (!previousOffer) {
+          // Offerta completamente nuova
+          return {
+            ...newOffer,
+            isNew: true,
+            priceChange: 'new',
+            priceChangeAmount: 0
+          };
+        }
+        
+        // Confronta prezzi
+        const newPrice = newOffer.price;
+        const oldPrice = previousOffer.price;
+        
+        if (newPrice === oldPrice) {
+          // Prezzo uguale
+          return {
+            ...newOffer,
+            isNew: false,
+            priceChange: 'same',
+            priceChangeAmount: 0
+          };
+        } else if (newPrice > oldPrice) {
+          // Prezzo aumentato
+          return {
+            ...newOffer,
+            isNew: false,
+            priceChange: 'increased',
+            priceChangeAmount: newPrice - oldPrice
+          };
+        } else {
+          // Prezzo diminuito
+          return {
+            ...newOffer,
+            isNew: false,
+            priceChange: 'decreased',
+            priceChangeAmount: oldPrice - newPrice
+          };
+        }
+      });
+      
+      const newCount = comparedOffers.filter(o => o.isNew).length;
+      const increasedCount = comparedOffers.filter(o => o.priceChange === 'increased').length;
+      const decreasedCount = comparedOffers.filter(o => o.priceChange === 'decreased').length;
+      const sameCount = comparedOffers.filter(o => o.priceChange === 'same').length;
+      
+      logger.info(`📊 Confronto completato: ${newCount} nuove, ${increasedCount} aumentate, ${decreasedCount} diminuite, ${sameCount} invariate`);
+      
+      return comparedOffers;
+      
+    } catch (error) {
+      logger.error('❌ Errore durante il confronto con precedenti:', error.message);
+      // In caso di errore, restituisci le offerte senza confronto
+      return newOffers.map(offer => ({
+        ...offer,
+        isNew: false,
+        priceChange: null,
+        priceChangeAmount: 0
+      }));
+    }
+  }
+
   async loadOffers() {
     try {
       if (!await fs.pathExists(this.offersFile)) {

@@ -6,6 +6,8 @@ const AyvensParser = require('../parsers/ayvensParser');
 const AlphabetParser = require('../parsers/alphabetParser');
 const LeasysParser = require('../parsers/leasysParser');
 const RentagoParser = require('../parsers/rentagoParser');
+const DriveFleeParser = require('../parsers/drivefleeParser');
+const YoyoMoveParser = require('../parsers/yoyomoveParser');
 
 class CarScraper {
   constructor() {
@@ -13,7 +15,9 @@ class CarScraper {
       ayvens: new AyvensParser(),
       alphabet: new AlphabetParser(),
       leasys: new LeasysParser(),
-      rentago: new RentagoParser()
+      rentago: new RentagoParser(),
+      driveflee: new DriveFleeParser(),
+      yoyomove: new YoyoMoveParser()
     };
   }
 

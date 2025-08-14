@@ -29,6 +29,8 @@ module.exports = {
     ayvens: 'https://noleggio.ayvens.com/it-it/noleggio-lungo-termine/',
     alphabet: 'https://www.alphabet.com/it-it/offerte-di-noleggio-lungo-termine',
     leasys: 'https://e-store.leasys.com/it/italiano/business',
-    rentago: 'https://www.rentago.it/noleggio-a-lungo-termine/?p0=toscana&p1=rata-a-350'
+    rentago: 'https://www.rentago.it/noleggio-a-lungo-termine/?p0=toscana&p1=rata-a-350',
+    driveflee: 'https://driveflee.com/noleggio-a-lungo-termine/',
+    yoyomove: 'https://www.yoyomove.com/it/offerte-noleggio-lungo-termine-aziende/?database_id=g_it_search_generic_nlt_exact'
   }
 };

@@ -12,6 +12,8 @@ Il Car Rental Bot monitora automaticamente le offerte di noleggio a lungo termin
 - **Alphabet** - Fleet management e noleggi
 - **Leasys** - Noleggio lungo termine FCA
 - **Rentago** - Piattaforma noleggi online
+- **DriveFlee** - Piattaforma noleggi long term
+- **YoyoMove** - Noleggio lungo termine con offerte business
 
 ## ✨ Caratteristiche
 
@@ -149,6 +151,8 @@ node src/index.js --manual -s leas
 - `alphabet` (alias: `alpha`, `alph`)
 - `leasys` (alias: `leas`)
 - `rentago` (alias: `rent`, `renta`)
+- `driveflee` (alias: `drive`, `flee`)
+- `yoyomove` (alias: `yoyo`, `move`)
 
 ### 📋 Help Integrato
 
@@ -181,7 +185,9 @@ car-rental-bot/
 │   │   ├── ayvensParser.js       # Parser Ayvens (ex-Arval)
 │   │   ├── alphabetParser.js     # Parser Alphabet
 │   │   ├── leasysParser.js       # Parser Leasys
-│   │   └── rentagoParser.js      # Parser Rentago
+│   │   ├── rentagoParser.js      # Parser Rentago
+│   │   ├── drivefleeParser.js    # Parser DriveFlee
+│   │   └── yoyomoveParser.js     # Parser YoyoMove
 │   ├── scrapers/
 │   │   └── carScraper.js         # Orchestratore scraping
 │   └── utils/
@@ -432,7 +438,7 @@ Per problemi o domande:
 
 ### v1.0.0 (2024-01-15)
 - ✨ Prima release pubblica
-- 🌐 Supporto per 4 siti principali (Ayvens, Alphabet, Leasys, Rentago)
+- 🌐 Supporto per 6 siti principali (Ayvens, Alphabet, Leasys, Rentago, DriveFlee, YoyoMove)
 - 📱 Integrazione Discord completa
 - ⏰ Scheduling automatico
 - 🛡️ Anti-detection avanzato

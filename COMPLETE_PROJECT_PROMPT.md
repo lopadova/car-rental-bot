@@ -1,7 +1,7 @@
 # 🚗 PROMPT COMPLETO PER RICREARE IL CAR RENTAL BOT
 
 ## 🎯 OBIETTIVO FINALE
-Creare un bot Node.js che monitora automaticamente le offerte di noleggio auto a lungo termine dal sito Ayvens, filtra le offerte secondo criteri configurabili, e invia notifiche Discord formattate con le migliori offerte organizzate per marca e modello.
+Creare un bot Node.js che monitora automaticamente le offerte di noleggio auto a lungo termine dai migliori siti di noleggio, filtra le offerte secondo criteri configurabili, e invia notifiche Discord formattate con le migliori offerte organizzate per marca e modello.
 
 ## 📋 TASK LIST COMPLETA
 
@@ -17,7 +17,10 @@ Creare un bot Node.js che monitora automaticamente le offerte di noleggio auto a
   ├── scheduler.js
   ├── parsers/
   │   ├── baseParser.js
+  │   └── alphabetParser.js
+  │   └── arvalParser.js
   │   └── ayvensParser.js
+  │   └── rentagoParser.js
   ├── scrapers/
   │   └── carScraper.js
   └── utils/
@@ -27,6 +30,12 @@ Creare un bot Node.js che monitora automaticamente le offerte di noleggio auto a
       └── logger.js
   data/
   logs/
+  html-card/
+  ├── esempio-card-sito-ayvens.html
+  ├── esempio-card-sito-leasys.html
+  ├── esempio-card-sito-rentago.html
+  ├── esempio-paging-sito-leasys.html
+  └── esempio-paging-sito-rentago.html
   ```
 
 ### 2. CONFIGURAZIONE AMBIENTE
@@ -92,6 +101,36 @@ LOG_LEVEL=debug
     - Anticipo: estrazione da testo info se presente
     - Duration: estrazione mesi da info
 
+- [ ] Implementare il parser leasys che estende baseParser:
+	- Url:  https://e-store.leasys.com/it/italiano/business 
+	- a quella pagina c'è intanto da accettare il cookie 
+	- poi c'è una lista con i filtri a sinistra e il paging infondo quindi devi navigare tutte le pagine prendendo le offerte di ogni pagina.
+	- Non interagire con i filtri di sinistra ma tira fuori tutte le offerte e le filtri dopo quando parsi tutte le card estratte navigando tutte le pagine.
+	- il paging è fatto come questo frammento html che ti riporto qui @.\html-card\esempio-paging-sito-leasys.html
+	- tiri fuori quindi i selettori/link per navigare tutte le offerte di tutte le pagine
+	- Ti metto un esempio di card offerta qui @.\html-card\esempio-card-sito-leasys.html dal quale puoi tirare fuori i selettori in quanto dentro questo file trovi un offerta con marca Maserati il modello è "Maserati Grecale 2.0 250cv MHEV GT Q4 auto" importo 903€ al mese, Anticipo 2.500 € durata  36 Mesi.
+	- Metti i log verbosi in modo che in caso di problemi si possa fare debug bene e vedere il punto dove si rompe.
+
+- [ ] Implementare il parser rentago che estende baseParser:
+	- Url:  https://www.rentago.it/noleggio-a-lungo-termine/?p0=toscana&p1=rata-a-{MAX_PRICE}
+	- al posto di {MAX_PRICE} devi mettere il valore del config MAX_PRICE, quindi ad esempio se MAX_PRICE=350 l'url diventa https://www.rentago.it/noleggio-a-lungo-termine/?p0=toscana&p1=rata-a-350
+	- a quella pagina c'è intanto da accettare il cookie 
+	- poi c'è una lista con il paging infondo quindi devi navigare tutte le pagine prendendo le offerte di ogni pagina.
+	- il paging è fatto come questo frammento html che ti riporto qui @.\html-card\esempio-paging-sito-rentago.html che mostra 4 pagine.
+	- tiri fuori quindi i selettori/link per navigare tutte le offerte di tutte le pagine
+	- appena hai tirato fuori tutte le offerte le scremi/filtri dopo quando parsi tutte le card estratte.
+	- Ti metto un esempio di card offerta qui @.\html-card\esempio-card-sito-rentago.html dal quale puoi tirare fuori i selettori in quanto dentro questo file trovi un offerta con marca Fiat il modello è "Panda - Pandina" importo "169€" al mese. in queste card non trovi l'indicazione di Anticipo e durata quindi non li considerare ne per il messaggio ne per filtrare o scartare le offerte con questi due parametri.
+	- Metti i log verbosi in modo che in caso di problemi si possa fare debug bene e vedere il punto dove si rompe.
+	
+- [ ] Implementare il parser alphabet che estende baseParser:
+	- Url:  https://www.alphabet.com/it-it/offerte-di-noleggio-lungo-termine
+	- a quella pagina c'è intanto da accettare il cookie 
+	- poi c'è una lista ma in questa lista NON c'è il paging quindi puoi prendere solo le offerte presenti in questa pagina.	
+	- appena hai tirato fuori tutte le offerte le scremi/filtri dopo quando parsi tutte le card estratte.
+	- Ti metto un esempio di card offerta qui @.\html-card\esempio-card-sito-alphabet.html dal quale puoi tirare fuori i selettori in quanto dentro questo file trovi un offerta con marca BMW il modello è "BMW SERIE 1 118d MSport Pro 150 CV automatic" importo "399€" al mese durata "36 mesi" e anticipo: 1.229€
+	- Metti i log verbosi in modo che in caso di problemi si possa fare debug bene e vedere il punto dove si rompe.
+
+
 ### 6. SCRAPER PRINCIPALE
 - [ ] Implementare `src/scrapers/carScraper.js`:
   - Orchestrazione scraping singolo sito
@@ -109,14 +148,17 @@ LOG_LEVEL=debug
     - Titolo dinamico "Parte X/Y" per messaggi multipli
     - Descrizione con statistiche complete/parziali
     - Campi per ogni brand con modelli ordinati per prezzo
-    - Supporto anticipo Ayvens in formato "(anticipo €XXX)"
+	- se offerta non era presente prima di questo modello mettere icona new
+	- se prezzo aumentato rispetto al precedente mettere icona/carattere rosso freccia su e +€xx,xx, se diminuita verde freccia giu e -€xx,xx, se uguale non aggiungere niente.
+    - Supporto anticipo in formato "(anticipo €XXX)"
+	- stampi il portale da dove hai preso offerta (es.: alphabet, rentago, etc..) in quanto se lanci il bot con più portali poi non so l'offerta nel messaggio a quale portale si riferisce.
     - Footer con criteri filtraggio
   - `sendError()` e `sendStartupMessage()` per notifiche stato
 
 ### 8. GESTIONE DATI E STORICO
 - [ ] Implementare `src/utils/dataManager.js`:
   - Salvataggio offerte JSON con timestamp
-  - Confronto offerte precedenti per novità
+  - Confronto offerte precedenti per novità o cambio prezzo
   - Pulizia automatica dati vecchi (30 giorni)
   - Statistiche sessione scraping
 

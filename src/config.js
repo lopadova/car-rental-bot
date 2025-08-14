@@ -26,10 +26,9 @@ module.exports = {
     level: process.env.LOG_LEVEL || 'info'
   },
   sites: {
-    leaseplan: 'https://www.leaseplan.com/it-it/',
     ayvens: 'https://noleggio.ayvens.com/it-it/noleggio-lungo-termine/',
-    alphabet: 'https://www.alphabet.com/it-it',
-    leasys: 'https://www.leasys.com/it',
-    rentago: 'https://www.rentago.it/'
+    alphabet: 'https://www.alphabet.com/it-it/offerte-di-noleggio-lungo-termine',
+    leasys: 'https://e-store.leasys.com/it/italiano/business',
+    rentago: 'https://www.rentago.it/noleggio-a-lungo-termine/?p0=toscana&p1=rata-a-350'
   }
 };

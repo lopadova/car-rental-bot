@@ -271,7 +271,7 @@ class DiscordNotifier {
           },
           {
             name: '🌐 Siti monitorati',
-            value: 'LeasePlan, Arval, Alphabet, Leasys, Rentago',
+            value: 'Ayvens, Alphabet, Leasys, Rentago',
             inline: false
           }
         ],

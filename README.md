@@ -8,8 +8,7 @@ Il Car Rental Bot monitora automaticamente le offerte di noleggio a lungo termin
 
 ### 🌐 Siti Monitorati
 
-- **LeasePlan** - Offerte corporate e private
-- **Arval** - Soluzioni di noleggio a lungo termine  
+- **Ayvens** - Noleggio lungo termine (ex-Arval)
 - **Alphabet** - Fleet management e noleggi
 - **Leasys** - Noleggio lungo termine FCA
 - **Rentago** - Piattaforma noleggi online
@@ -131,11 +130,11 @@ node src/index.js --test-discord
 
 #### Tutti i parametri accettano `--sites` o `-s`:
 
-**Scraping solo LeasePlan e Arval:**
+**Scraping solo Ayvens e Leasys:**
 ```bash
-node src/index.js --manual --sites leaseplan,arval
+node src/index.js --manual --sites ayvens,leasys
 # oppure
-node src/index.js --manual -s lease,arval
+node src/index.js --manual -s ayv,leas
 ```
 
 **Scraping solo Leasys:**
@@ -146,8 +145,7 @@ node src/index.js --manual -s leas
 ```
 
 **Siti disponibili:**
-- `leaseplan` (alias: `lease`, `plan`)
-- `arval` (alias: `arv`)
+- `ayvens` (alias: `ayv`, `arv`)
 - `alphabet` (alias: `alpha`, `alph`)
 - `leasys` (alias: `leas`)
 - `rentago` (alias: `rent`, `renta`)
@@ -180,8 +178,7 @@ car-rental-bot/
 │   ├── scheduler.js              # Gestione cron jobs
 │   ├── parsers/                  # Parser HTML per ogni sito
 │   │   ├── baseParser.js         # Classe base parser
-│   │   ├── leasePlanParser.js    # Parser LeasePlan
-│   │   ├── arvalParser.js        # Parser Arval
+│   │   ├── ayvensParser.js       # Parser Ayvens (ex-Arval)
 │   │   ├── alphabetParser.js     # Parser Alphabet
 │   │   ├── leasysParser.js       # Parser Leasys
 │   │   └── rentagoParser.js      # Parser Rentago
@@ -279,13 +276,13 @@ Esempio messaggio:
 2024-01-15 • 5 marche • 12 offerte
 
 🔹 FIAT
-Panda • €149/mese • LeasePlan
-└ €159/mese • Arval
+Panda • €149/mese • Leasys
+└ €159/mese • Ayvens
 500 • €189/mese • Leasys
 
 🔹 BMW  
 Serie 1 • €299/mese • Alphabet
-X1 • €349/mese • LeasePlan
+X1 • €349/mese • Leasys
 ```
 
 ## 🛠️ Manutenzione
@@ -333,7 +330,7 @@ rmdir /s data
 
 1. **Verifica connessione siti**:
 ```bash
-ping www.leaseplan.com
+ping noleggio.ayvens.com
 ```
 
 2. **Controlla log**:
@@ -370,8 +367,8 @@ node src/index.js --manual -s leaseplan
 
 ### Scenario 2: Scraping Selettivo per Debug
 ```bash
-# Debug solo Arval e Leasys senza scheduler
-node src/index.js --manual --sites arval,leasys
+# Debug solo Ayvens e Leasys senza scheduler
+node src/index.js --manual --sites ayvens,leasys
 ```
 
 ### Scenario 3: Scraping Completo Immediato
@@ -394,9 +391,9 @@ npm run test-discord
 | `npm run manual` | Scraping manuale una volta | `npm run manual` |
 | `npm run test-discord` | Test solo Discord | `npm run test-discord` |
 | `npm run help` | Mostra help integrato | `npm run help` |
-| `--sites <lista>` | Selezione siti specifici | `--sites lease,arval` |
+| `--sites <lista>` | Selezione siti specifici | `--sites leas,ayv` |
 | `-s <lista>` | Alias breve per --sites | `-s leas,alpha` |
-| `--manual` | Modalità manuale | `--manual --sites arval` |
+| `--manual` | Modalità manuale | `--manual --sites ayvens` |
 
 ## 📜 Licenza
 
@@ -435,7 +432,7 @@ Per problemi o domande:
 
 ### v1.0.0 (2024-01-15)
 - ✨ Prima release pubblica
-- 🌐 Supporto per 5 siti principali
+- 🌐 Supporto per 4 siti principali (Ayvens, Alphabet, Leasys, Rentago)
 - 📱 Integrazione Discord completa
 - ⏰ Scheduling automatico
 - 🛡️ Anti-detection avanzato

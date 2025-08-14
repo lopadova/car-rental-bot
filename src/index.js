@@ -189,8 +189,8 @@ ESEMPI:
   # Scraping immediato (tutti i siti)
   node src/index.js --manual
   
-  # Scraping solo LeasePlan e Arval
-  node src/index.js --manual --sites leaseplan,arval
+  # Scraping solo Ayvens e Leasys
+  node src/index.js --manual --sites ayvens,leasys
   
   # Scraping solo Leasys (abbreviato)
   node src/index.js --manual -s leas
@@ -205,7 +205,7 @@ ESEMPI:
   npm run dev                       # Sviluppo con nodemon
 
 SUPPORTO SITI PARZIALI:
-  I nomi dei siti possono essere abbreviati (es: "lease" per "leaseplan")
+  I nomi dei siti possono essere abbreviati (es: "ayv" per "ayvens")
   
 LOGS E DEBUG:
   I log sono salvati in logs/ con rotazione giornaliera

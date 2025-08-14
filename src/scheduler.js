@@ -132,17 +132,17 @@ class Scheduler {
               model: 'Panda',
               price: 150,
               duration: 48,
-              site: 'LeasePlan'
+              site: 'Ayvens'
             },
             allOffers: [{
               brand: 'FIAT',
               model: 'Panda',
               price: 150,
               duration: 48,
-              site: 'LeasePlan'
+              site: 'Ayvens'
             }],
             lowestPrice: 150,
-            cheapestSite: 'LeasePlan'
+            cheapestSite: 'Ayvens'
           }
         }
       };

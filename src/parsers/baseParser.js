@@ -60,7 +60,7 @@ class BaseParser {
 
     // Debug dettagliato per capire perché un'offerta viene scartata
     if (!isValid) {
-      const logger = require('./logger');
+      const logger = require('../utils/logger');
       logger.debug('🔍 Dettaglio validazione offerta:', {
         brand: offer.brand,
         model: offer.model,

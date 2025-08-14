@@ -2,7 +2,6 @@ const browserManager = require('../utils/browser');
 const logger = require('../utils/logger');
 
 // Importa tutti i parser
-const LeasePlanParser = require('../parsers/leasePlanParser');
 const AyvensParser = require('../parsers/ayvensParser');
 const AlphabetParser = require('../parsers/alphabetParser');
 const LeasysParser = require('../parsers/leasysParser');
@@ -11,7 +10,6 @@ const RentagoParser = require('../parsers/rentagoParser');
 class CarScraper {
   constructor() {
     this.parsers = {
-      leaseplan: new LeasePlanParser(),
       ayvens: new AyvensParser(),
       alphabet: new AlphabetParser(),
       leasys: new LeasysParser(),

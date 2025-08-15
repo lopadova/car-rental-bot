@@ -31,6 +31,11 @@ module.exports = {
     leasys: 'https://e-store.leasys.com/it/italiano/business',
     rentago: 'https://www.rentago.it/noleggio-a-lungo-termine/?p0=toscana&p1=rata-a-350',
     driveflee: 'https://driveflee.com/noleggio-a-lungo-termine/',
-    yoyomove: 'https://www.yoyomove.com/it/offerte-noleggio-lungo-termine-aziende/?database_id=g_it_search_generic_nlt_exact'
+    yoyomove: 'https://www.yoyomove.com/it/offerte-noleggio-lungo-termine-aziende/?database_id=g_it_search_generic_nlt_exact',
+    noleggiosemplice: 'https://www.noleggiosemplice.it/noleggio-lungo-termine',
+    syntonia: 'https://www.syntonia.biz/noleggio-lungo-termine',
+    facile: 'https://www.facile.it/noleggio-lungo-termine-partita-iva.html?sort=monthlyFee',
+    noleggiare: 'https://www.noleggiare.it/it/noleggio-lungo-termine/auto-nuove/',
+    clarisrent: 'https://clarisrent.it/it/nlt-aziende'
   }
 };

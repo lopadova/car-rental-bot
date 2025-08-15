@@ -171,6 +171,13 @@ class DiscordNotifier {
           offerLine += ` 🔻 -€${bestOffer.priceChangeAmount}`;
         }
         
+        // Aggiungi icone promo per Facile.it
+        if (bestOffer.promo === 'promo_del_mese') {
+          offerLine += ` 🕒`; // Clock icon for "PROMO DEL MESE"
+        } else if (bestOffer.promo === 'offerta_esclusiva') {
+          offerLine += ` ⭐`; // Star icon for "Offerta esclusiva Facile.it"
+        }
+        
         // Aggiungi anticipo se presente (per Ayvens)
         if (bestOffer.anticipo) {
           offerLine += ` (anticipo ${bestOffer.anticipo})`;
@@ -192,6 +199,13 @@ class DiscordNotifier {
               otherLine += ` 🔺 +€${offer.priceChangeAmount}`;
             } else if (offer.priceChange === 'decreased' && offer.priceChangeAmount > 0) {
               otherLine += ` 🔻 -€${offer.priceChangeAmount}`;
+            }
+            
+            // Aggiungi icone promo anche per offerte secondarie
+            if (offer.promo === 'promo_del_mese') {
+              otherLine += ` 🕒`; // Clock icon for "PROMO DEL MESE"
+            } else if (offer.promo === 'offerta_esclusiva') {
+              otherLine += ` ⭐`; // Star icon for "Offerta esclusiva Facile.it"
             }
             
             if (offer.anticipo) {

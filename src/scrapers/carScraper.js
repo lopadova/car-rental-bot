@@ -8,6 +8,11 @@ const LeasysParser = require('../parsers/leasysParser');
 const RentagoParser = require('../parsers/rentagoParser');
 const DriveFleeParser = require('../parsers/drivefleeParser');
 const YoyoMoveParser = require('../parsers/yoyomoveParser');
+const NoleggioSempliceParser = require('../parsers/noleggiosemplice');
+const SyntoniaParser = require('../parsers/syntonia');
+const FacileParser = require('../parsers/facile');
+const NoleggiareParser = require('../parsers/noleggiare');
+const ClarisRentParser = require('../parsers/clarisrent');
 
 class CarScraper {
   constructor() {
@@ -17,7 +22,12 @@ class CarScraper {
       leasys: new LeasysParser(),
       rentago: new RentagoParser(),
       driveflee: new DriveFleeParser(),
-      yoyomove: new YoyoMoveParser()
+      yoyomove: new YoyoMoveParser(),
+      noleggiosemplice: new NoleggioSempliceParser(),
+      syntonia: new SyntoniaParser(),
+      facile: new FacileParser(),
+      noleggiare: new NoleggiareParser(),
+      clarisrent: new ClarisRentParser()
     };
   }
 

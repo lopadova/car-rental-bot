@@ -100,6 +100,7 @@ LOG_LEVEL=debug
     - Price: parsing numerico da stringa prezzo
     - Anticipo: estrazione da testo info se presente
     - Duration: estrazione mesi da info
+	- Esegui il test cosi puoi verificare che tutto funzioni altrimenti autocorreggerti a ritesta fino al successo o dopo 3/4 tentativi chiedi a me che fare.
 
 - [ ] Implementare il parser leasys che estende baseParser:
 	- Url:  https://e-store.leasys.com/it/italiano/business 
@@ -110,6 +111,7 @@ LOG_LEVEL=debug
 	- tiri fuori quindi i selettori/link per navigare tutte le offerte di tutte le pagine
 	- Ti metto un esempio di card offerta qui @.\html-card\esempio-card-sito-leasys.html dal quale puoi tirare fuori i selettori in quanto dentro questo file trovi un offerta con marca Maserati il modello è "Maserati Grecale 2.0 250cv MHEV GT Q4 auto" importo 903€ al mese, Anticipo 2.500 € durata  36 Mesi.
 	- Metti i log verbosi in modo che in caso di problemi si possa fare debug bene e vedere il punto dove si rompe.
+	- Esegui il test cosi puoi verificare che tutto funzioni altrimenti autocorreggerti a ritesta fino al successo o dopo 3/4 tentativi chiedi a me che fare.
 
 - [ ] Implementare il parser rentago che estende baseParser:
 	- Url:  https://www.rentago.it/noleggio-a-lungo-termine/?p0=toscana&p1=rata-a-{MAX_PRICE}
@@ -121,6 +123,7 @@ LOG_LEVEL=debug
 	- appena hai tirato fuori tutte le offerte le scremi/filtri dopo quando parsi tutte le card estratte.
 	- Ti metto un esempio di card offerta qui @.\html-card\esempio-card-sito-rentago.html dal quale puoi tirare fuori i selettori in quanto dentro questo file trovi un offerta con marca Fiat il modello è "Panda - Pandina" importo "169€" al mese. in queste card non trovi l'indicazione di Anticipo e durata quindi non li considerare ne per il messaggio ne per filtrare o scartare le offerte con questi due parametri.
 	- Metti i log verbosi in modo che in caso di problemi si possa fare debug bene e vedere il punto dove si rompe.
+	- Esegui il test cosi puoi verificare che tutto funzioni altrimenti autocorreggerti
 	
 - [ ] Implementare il parser alphabet che estende baseParser:
 	- Url:  https://www.alphabet.com/it-it/offerte-di-noleggio-lungo-termine
@@ -129,7 +132,110 @@ LOG_LEVEL=debug
 	- appena hai tirato fuori tutte le offerte le scremi/filtri dopo quando parsi tutte le card estratte.
 	- Ti metto un esempio di card offerta qui @.\html-card\esempio-card-sito-alphabet.html dal quale puoi tirare fuori i selettori in quanto dentro questo file trovi un offerta con marca BMW il modello è "BMW SERIE 1 118d MSport Pro 150 CV automatic" importo "399€" al mese durata "36 mesi" e anticipo: 1.229€
 	- Metti i log verbosi in modo che in caso di problemi si possa fare debug bene e vedere il punto dove si rompe.
+	- Esegui il test cosi puoi verificare che tutto funzioni altrimenti autocorreggerti a ritesta fino al successo o dopo 3/4 tentativi chiedi a me che fare.
+	
+- [ ] Implementare il parser driveflee che estende baseParser:
+	- Url:  https://driveflee.com/noleggio-a-lungo-termine/
+	- a quella pagina c'è intanto da accettare il cookie 
+	- poi c'è una lista ma in questa lista NON c'è il paging quindi puoi prendere solo le offerte presenti in questa pagina.	
+	- appena hai tirato fuori tutte le offerte le scremi/filtri dopo quando parsi tutte le card estratte.
+	- Ti metto un esempio di card offerta qui @.\html-card\esempio-card-sito-driveflee.html dal quale puoi tirare fuori i selettori in quanto dentro questo file trovi un offerta con marca Fiat il modello è "Fiat Panda 1.0 firefly hybrid s&s 70cv 5p.ti" importo "119€" al mese durata "48 mesi" e "Anticipo: 2.500 €"
+	- Metti i log verbosi in modo che in caso di problemi si possa fare debug bene e vedere il punto dove si rompe.
+	- Esegui il test cosi puoi verificare che tutto funzioni altrimenti autocorreggerti a ritesta fino al successo o dopo 3/4 tentativi chiedi a me che fare.
+	
+- [ ] Implementare il parser noleggiosemplice che estende baseParser:
+	- Url:  https://www.noleggiosemplice.it/noleggio-lungo-termine
+	- a quella pagina c'è intanto da accettare il cookie 
+	- poi c'è una lista ma in questa lista NON c'è il paging quindi puoi prendere solo le offerte presenti in questa pagina.	
+	- appena hai tirato fuori tutte le offerte le scremi/filtri dopo quando parsi tutte le card estratte.
+	- Ti metto un esempio di card offerta qui @.\html-card\esempio-card-sito-noleggiosemplice.html dal quale puoi tirare fuori i selettori in quanto dentro questo file trovi un offerta con marca Fiat il modello è "Fiat Panda 1.0 70 Cv S&S Hybrid" importo "169€" al mese durata "36 mesi" e "Anticipo €4000"
+	- Metti i log verbosi in modo che in caso di problemi si possa fare debug bene e vedere il punto dove si rompe.
+	- Esegui il test cosi puoi verificare che tutto funzioni altrimenti autocorreggerti a ritesta fino al successo o dopo 3/4 tentativi chiedi a me che fare.
+	
+- [ ] Implementare il parser syntonia che estende baseParser:
+	- Url:  https://www.syntonia.biz/noleggio-lungo-termine
+	- a quella pagina c'è intanto da accettare il cookie 
+	- poi c'è una lista ma in questa lista NON c'è il paging quindi puoi prendere solo le offerte presenti in questa pagina.	
+	- appena hai tirato fuori tutte le offerte le scremi/filtri dopo quando parsi tutte le card estratte.
+	- Ti metto un esempio di card offerta qui @.\html-card\esempio-card-sito-syntonia.html dal quale puoi tirare fuori i selettori in quanto dentro questo file trovi un offerta con marca Toyota il modello è "Toyota Aygo X 1.0 VVT-i 72 CV 5p. Active" importo "€185" al mese durata "36 mesi" e "Anticipo €3500"
+	- Metti i log verbosi in modo che in caso di problemi si possa fare debug bene e vedere il punto dove si rompe.
+	- Esegui il test cosi puoi verificare che tutto funzioni altrimenti autocorreggerti a ritesta fino al successo o dopo 3/4 tentativi chiedi a me che fare.
 
+- [ ] Implementare il parser facile che estende baseParser:
+	- Url:  https://www.facile.it/noleggio-lungo-termine-partita-iva.html?sort=monthlyFee
+	- a quella pagina c'è intanto da accettare il cookie 
+	- poi c'è una lista ma in questa lista NON c'è il paging quindi puoi prendere solo le offerte presenti in questa pagina.	
+	- appena hai tirato fuori tutte le offerte le scremi/filtri dopo quando parsi tutte le card estratte.
+	- Ti metto un esempio di card offerta qui @.\html-card\esempio-card-sito-facile.html dal quale puoi tirare fuori i selettori in quanto dentro questo file trovi un offerta con marca Toyota il modello è "Toyota Aygo X" importo "€141" al mese durata "36 mesi" e "Anticipo 4.099€"
+	- Attenzione esistono delle card anche che scrivono "usato" oppure "consegna veloce" o entrambe le voci e nella prima stesura del codice prendevi qui nomi come nomi marca ti passa la card offerta di questa casistica qui @.\html-card\esempio-card-sito-facile-usato.html qui trovi un offerta con marca JEEP il modello è "Jeep Compass" importo "€241" al mese durata "24 mesi" e "Anticipo 4.098€"
+	- Attenzione esistono delle card anche che scrivono "PROMO DEL MESE" ti passo la card offerta di questa casistica qui @.\html-card\esempio-card-sito-facile-promo.html qui trovi un offerta con marca Toyota il modello è "Toyota Yaris Cross" importo "241€" al mese durata "36 mesi" e "Anticipo 4.098€". Controlla quando c'è questa offerta del mese nella card e mettimi un icona quando mandi il messaggio discord cosi che mi accorga che è una promo. La promo la possono scrivere anche cosi con il testo "Offerta esclusiva Facile.it" ti passo anche per quesot caso la card offerta di questa casistica qui @.\html-card\esempio-card-sito-facile-offerta-esclusiva.html qui trovi un offerta con marca Toyota il modello è "TOYOTA C-HR" importo "239€" al mese durata "36 mesi" e "Anticipo 4.098€". Controlla quando c'è questa offerta del mese nella card e mettimi un icona quando mandi il messaggio discord cosi che mi accorga che è una promo.
+	- Metti i log verbosi in modo che in caso di problemi si possa fare debug bene e vedere il punto dove si rompe.
+	- Esegui il test cosi puoi verificare che tutto funzioni altrimenti autocorreggerti a ritesta fino al successo o dopo 3/4 tentativi chiedi a me che fare.
+
+- [ ] Implementare il parser noleggiare che estende baseParser:
+	- Url:  https://www.noleggiare.it/it/noleggio-lungo-termine/auto-nuove/
+	- a quella pagina c'è intanto da accettare il cookie 
+	- poi c'è una lista ma in questa lista NON c'è il paging quindi puoi prendere solo le offerte presenti in questa pagina.	
+	- appena hai tirato fuori tutte le offerte le scremi/filtri dopo quando parsi tutte le card estratte.
+	- Ti metto un esempio di card offerta qui @.\html-card\esempio-card-sito-noleggiare.html dal quale puoi tirare fuori i selettori in quanto dentro questo file trovi un offerta con marca FIAT il modello è "FIAT PANDA" importo "€ 159" al mese durata "36 mesi" e "Anticipo € 2990"
+	- Metti i log verbosi in modo che in caso di problemi si possa fare debug bene e vedere il punto dove si rompe.
+	- Esegui il test cosi puoi verificare che tutto funzioni altrimenti autocorreggerti a ritesta fino al successo o dopo 3/4 tentativi chiedi a me che fare.
+
+- [ ] Implementare il parser clarisrent che estende baseParser:
+	- Url:  https://clarisrent.it/it/nlt-aziende
+	- a quella pagina c'è intanto da accettare il cookie 
+	- poi c'è una lista ma in questa lista NON c'è il paging quindi puoi prendere solo le offerte presenti in questa pagina.	
+	- appena hai tirato fuori tutte le offerte le scremi/filtri dopo quando parsi tutte le card estratte.
+	- Ti metto un esempio di card offerta qui @.\html-card\esempio-card-sito-clarisrent.html dal quale puoi tirare fuori i selettori in quanto dentro questo file trovi un offerta con marca FIAT il modello è "FIAT DUCATO" importo "405€" al mese durata "48 mesi" e "Anticipo: € 5.000€"
+	- Metti i log verbosi in modo che in caso di problemi si possa fare debug bene e vedere il punto dove si rompe.
+	- Esegui il test cosi puoi verificare che tutto funzioni altrimenti autocorreggerti a ritesta fino al successo o dopo 3/4 tentativi chiedi a me che fare.
+
+- [ ] Implementare il parser yoyomove che estende baseParser:
+	- Url: https://www.yoyomove.com/it/offerte-noleggio-lungo-termine-aziende/?database_id=g_it_search_generic_nlt_exact
+	- a quella pagina c'è intanto da accettare il cookie. Il pulsante specifico è <button class="qc-cmp2-close-icon" aria-label="RIFIUTA TUTTO">.
+	- fai attenzione anche alla navigazione delle pagine perché il problema principale è che il popup cookie blocca i click sui link di paginazione.
+	- poi c'è una lista con il paging infondo quindi devi navigare tutte le pagine prendendo le offerte di ogni pagina.
+	- il paging è fatto come questo frammento html che ti riporto qui @.\html-card\esempio-paging-sito-yoyomove.html che mostra 5 pagine ma attenzione le pagine totali sono di più infatti nell'ultimo link del paging troverai che sono 10 totali quindi le devi navigare tutte.
+	- tiri fuori quindi i selettori/link per navigare tutte le offerte di tutte le pagine
+	- 1. Click fuori dal banner: Tentativo di click su body alle coordinate (50,50)
+	  - Rimozione JavaScript aggressiva: Rimuove tutto il container #qc-cmp2-container
+	  - Verifica continua: Controlla che il popup sia effettivamente sparito
+	  2. Navigazione Paginazione Robusta:
+	  - Rimozione preventiva popup: Prima di ogni click, verifica e rimuove eventuali popup
+	  - Multipli metodi di click:
+		a. Click normale
+		b. Click forzato ({ force: true })
+		c. Click via JavaScript
+	  - Navigazione diretta: Se i click falliscono, naviga direttamente tramite URL
+	  - Verifica successo: Controlla che l'URL sia effettivamente cambiato
+	  3. Metodo ensureCookiePopupRemoved():
+	  - Chiamato prima di ogni navigazione
+	  - Rimuove forzatamente tutti gli elementi qc-cmp
+	  - Riabilita i pointer-events su body e html
+	  - Rimuove overlay che potrebbero bloccare i click
+	  4. Selettori paginazione specifici:
+	   Basati sull'HTML che hai fornito:
+	   - a.pagination__page-link--next (pulsante freccia "avanti")
+	   - a.pagination__page[data-page-target="${currentPage + 1}"] (pagina specifica)
+	   - Navigazione diretta con URL pattern corretto
+	   - appena hai tirato fuori tutte le offerte le scremi/filtri dopo quando parsi tutte le card estratte.
+	  5. Devi implementare una migliore logica per rilevare la fine della paginazione e non continuare dopo l'ultima.Puoi usare il trucco di leggere l'ultimo link della paginazione >> quando sei a pagina=1 e quello dovrebbe darti il numero di pagine totali vedi esempio nel file che ti ho allegato. In alternativa (scegli te il metodo + robusto) puoi anche implementare una Logica di terminazione intelligente:
+		- Condizione 1 - Pagine vuote consecutive:
+		- Se trova 2 pagine consecutive senza offerte valide → STOP
+		- Reset del contatore quando trova offerte
+		Condizione 2 - Link paginazione:
+		  - Se non esiste link per pagina successiva → STOP
+		  - Se pulsante "next" è disabilitato/nascosto → STOP
+
+		  Condizione 3 - Limite massimo pagine:
+		  - Se raggiunge pagina 15 → STOP per sicurezza
+		  - Se currentPage >= maxPage (dal link ultima pagina) → STOP
+
+		  Condizione 4 - Fallimento navigazione:
+		  - Se tutti i metodi di navigazione falliscono → STOP		
+	- Ti metto un esempio di card offerta qui @.\html-card\esempio-card-sito-yoyomove.html dal quale puoi tirare fuori i selettori in quanto dentro questo file trovi un offerta con marca Fiat il modello è "Fiat Panda 1.0 FireFly Hybrid 70cv" importo "135€" al mese durata "36 mesi" e "Anticipo: 3.500€"
+	- Metti i log verbosi in modo che in caso di problemi si possa fare debug bene e vedere il punto dove si rompe.
+	- Esegui il test cosi puoi verificare che tutto funzioni altrimenti autocorreggerti a ritesta fino al successo o dopo 3/4 tentativi chiedi a me che fare.
 
 ### 6. SCRAPER PRINCIPALE
 - [ ] Implementare `src/scrapers/carScraper.js`:

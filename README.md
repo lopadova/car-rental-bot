@@ -14,6 +14,11 @@ Il Car Rental Bot monitora automaticamente le offerte di noleggio a lungo termin
 - **Rentago** - Piattaforma noleggi online
 - **DriveFlee** - Piattaforma noleggi long term
 - **YoyoMove** - Noleggio lungo termine con offerte business
+- **NoleggioSemplice** - Noleggio lungo termine con offerte competitive
+- **Syntonia** - Noleggio lungo termine con ampia selezione
+- **Facile.it** - Comparatore di noleggio lungo termine con partita IVA
+- **Noleggiare.it** - Piattaforma specializzata per noleggio auto nuove
+- **ClarisRent** - Noleggio lungo termine per aziende e privati
 
 ## ✨ Caratteristiche
 
@@ -153,6 +158,11 @@ node src/index.js --manual -s leas
 - `rentago` (alias: `rent`, `renta`)
 - `driveflee` (alias: `drive`, `flee`)
 - `yoyomove` (alias: `yoyo`, `move`)
+- `noleggiosemplice` (alias: `noleggio`, `semplice`)
+- `syntonia` (alias: `synt`, `synto`)
+- `facile` (alias: `fac`, `comp`)
+- `noleggiare` (alias: `nol`, `leggi`)
+- `clarisrent` (alias: `claris`, `rent`)
 
 ### 📋 Help Integrato
 
@@ -187,7 +197,12 @@ car-rental-bot/
 │   │   ├── leasysParser.js       # Parser Leasys
 │   │   ├── rentagoParser.js      # Parser Rentago
 │   │   ├── drivefleeParser.js    # Parser DriveFlee
-│   │   └── yoyomoveParser.js     # Parser YoyoMove
+│   │   ├── yoyomoveParser.js     # Parser YoyoMove
+│   │   ├── noleggiosemplice.js   # Parser NoleggioSemplice
+│   │   ├── syntonia.js           # Parser Syntonia
+│   │   ├── facile.js             # Parser Facile.it
+│   │   ├── noleggiare.js         # Parser Noleggiare.it
+│   │   └── clarisrent.js         # Parser ClarisRent
 │   ├── scrapers/
 │   │   └── carScraper.js         # Orchestratore scraping
 │   └── utils/
@@ -438,7 +453,7 @@ Per problemi o domande:
 
 ### v1.0.0 (2024-01-15)
 - ✨ Prima release pubblica
-- 🌐 Supporto per 6 siti principali (Ayvens, Alphabet, Leasys, Rentago, DriveFlee, YoyoMove)
+- 🌐 Supporto per 11 siti principali (Ayvens, Alphabet, Leasys, Rentago, DriveFlee, YoyoMove, NoleggioSemplice, Syntonia, Facile.it, Noleggiare.it, ClarisRent)
 - 📱 Integrazione Discord completa
 - ⏰ Scheduling automatico
 - 🛡️ Anti-detection avanzato

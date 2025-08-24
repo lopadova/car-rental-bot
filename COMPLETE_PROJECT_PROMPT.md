@@ -58,13 +58,21 @@ HEADLESS=false
 DELAY_MIN_MS=1000
 DELAY_MAX_MS=3000
 LOG_LEVEL=debug
+LOG_TO_FILE=false
 ```
 
 ### 3. SISTEMA DI LOGGING
-- [ ] Implementare `src/utils/logger.js` con winston
-- [ ] Configurare rotazione log giornaliera in cartella `logs/`
+- [ ] Implementare `src/utils/logger.js` con logging duale (console + file opzionale)
+- [ ] Supporto parametro `LOG_TO_FILE` per abilitare scrittura su file
+- [ ] Se `LOG_TO_FILE=true`:
+  - Creazione automatica directory `logs/`
+  - Nome file formato: `car-rental-bot-YYYY-MM-DD_HH-MM-SS.log`
+  - Esempio: `car-rental-bot-2025-08-25_00-12-59.log`
+  - Logging ANCHE su file (mantiene output console)
+  - Formato log: `[timestamp ISO] [LEVEL] messaggio`
 - [ ] Livelli: debug, info, warn, error
-- [ ] Format con timestamp e colori per console
+- [ ] Metodi compatibili con chiamate async esistenti
+- [ ] Gestione chiusura pulita del file log su exit/SIGINT/SIGTERM
 
 ### 4. GESTIONE BROWSER PLAYWRIGHT
 - [ ] Implementare `src/utils/browser.js` 

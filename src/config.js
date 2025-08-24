@@ -14,7 +14,7 @@ module.exports = {
     includedModels: process.env.INCLUDED_MODELS ? process.env.INCLUDED_MODELS.split(',').map(m => m.trim().toUpperCase()) : []
   },
   scheduling: {
-    cronSchedule: process.env.CRON_SCHEDULE || '0 8 * * *' // 8:00 AM ogni giorno
+    cronSchedule: process.env.CRON_SCHEDULE || '0 18 * * *' // 18:00 AM ogni giorno
   },
   browser: {
     userAgent: process.env.USER_AGENT || 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -23,7 +23,8 @@ module.exports = {
     delayMax: parseInt(process.env.DELAY_MAX_MS) || 3000
   },
   logging: {
-    level: process.env.LOG_LEVEL || 'info'
+    level: process.env.LOG_LEVEL || 'info',
+    logToFile: process.env.LOG_TO_FILE === 'true'
   },
   sites: {
     ayvens: 'https://noleggio.ayvens.com/it-it/noleggio-lungo-termine/',

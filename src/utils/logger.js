@@ -1,56 +1,169 @@
-const fs = require('fs-extra');
+const fs = require('fs');
 const path = require('path');
+const config = require('../config');
 
 class Logger {
   constructor() {
-    this.logDir = path.join(__dirname, '../../logs');
-    this.ensureLogDir();
-  }
-
-  async ensureLogDir() {
-    await fs.ensureDir(this.logDir);
-  }
-
-  formatMessage(level, message, data = null) {
-    const timestamp = new Date().toISOString();
-    const logEntry = {
-      timestamp,
-      level: level.toUpperCase(),
-      message,
-      ...(data && { data })
-    };
-    return JSON.stringify(logEntry, null, 2);
-  }
-
-  async writeLog(level, message, data = null) {
-    const formattedMessage = this.formatMessage(level, message, data);
+    this.logToFile = config.logging.logToFile;
+    this.logStream = null;
+    this.logFilePath = null;
+    this.logDir = path.join(process.cwd(), 'logs');
     
-    // Console output
-    console.log(`[${new Date().toISOString()}] ${level.toUpperCase()}: ${message}`);
-    if (data) {
-      console.log(JSON.stringify(data, null, 2));
+    if (this.logToFile) {
+      this.initializeFileLogging();
     }
-
-    // File output
-    const logFile = path.join(this.logDir, `${new Date().toISOString().split('T')[0]}.log`);
-    await fs.appendFile(logFile, formattedMessage + '\n');
   }
 
-  async info(message, data = null) {
-    await this.writeLog('info', message, data);
+  initializeFileLogging() {
+    // Create logs directory if it doesn't exist
+    if (!fs.existsSync(this.logDir)) {
+      fs.mkdirSync(this.logDir, { recursive: true });
+    }
+    
+    // Create log file with timestamp in format: car-rental-bot-YYYY-MM-DD_HH-MM-SS.log
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    
+    const logFileName = `car-rental-bot-${year}-${month}-${day}_${hours}-${minutes}-${seconds}.log`;
+    this.logFilePath = path.join(this.logDir, logFileName);
+    
+    // Create write stream
+    this.logStream = fs.createWriteStream(this.logFilePath, { flags: 'a', encoding: 'utf8' });
+    
+    // Log initialization
+    this.writeToFile(`=== Log Started at ${now.toISOString()} ===`);
   }
 
-  async error(message, data = null) {
-    await this.writeLog('error', message, data);
+  formatMessage(level, args) {
+    const timestamp = new Date().toISOString();
+    const message = args.map(arg => {
+      if (typeof arg === 'object') {
+        try {
+          return JSON.stringify(arg, null, 2);
+        } catch (error) {
+          return String(arg);
+        }
+      }
+      return String(arg);
+    }).join(' ');
+    
+    return `[${timestamp}] [${level.toUpperCase()}] ${message}`;
   }
 
-  async warn(message, data = null) {
-    await this.writeLog('warn', message, data);
+  writeToFile(message) {
+    if (this.logStream && this.logStream.writable) {
+      this.logStream.write(message + '\n');
+    }
   }
 
-  async debug(message, data = null) {
-    await this.writeLog('debug', message, data);
+  log(...args) {
+    // Always output to console
+    console.log(...args);
+    
+    // If file logging is enabled, also write to file
+    if (this.logToFile) {
+      const formattedMessage = this.formatMessage('info', args);
+      this.writeToFile(formattedMessage);
+    }
+  }
+
+  error(...args) {
+    // Always output to console
+    console.error(...args);
+    
+    // If file logging is enabled, also write to file
+    if (this.logToFile) {
+      const formattedMessage = this.formatMessage('error', args);
+      this.writeToFile(formattedMessage);
+    }
+  }
+
+  warn(...args) {
+    // Always output to console
+    console.warn(...args);
+    
+    // If file logging is enabled, also write to file
+    if (this.logToFile) {
+      const formattedMessage = this.formatMessage('warn', args);
+      this.writeToFile(formattedMessage);
+    }
+  }
+
+  info(...args) {
+    // Always output to console
+    console.info(...args);
+    
+    // If file logging is enabled, also write to file
+    if (this.logToFile) {
+      const formattedMessage = this.formatMessage('info', args);
+      this.writeToFile(formattedMessage);
+    }
+  }
+
+  debug(...args) {
+    // Only output if debug level is enabled
+    if (config.logging.level === 'debug') {
+      console.debug(...args);
+      
+      // If file logging is enabled, also write to file
+      if (this.logToFile) {
+        const formattedMessage = this.formatMessage('debug', args);
+        this.writeToFile(formattedMessage);
+      }
+    }
+  }
+
+  // Compatibility methods for async calls
+  async writeLog(level, message, data = null) {
+    const args = data ? [message, data] : [message];
+    
+    switch(level.toLowerCase()) {
+      case 'info':
+        this.info(...args);
+        break;
+      case 'error':
+        this.error(...args);
+        break;
+      case 'warn':
+        this.warn(...args);
+        break;
+      case 'debug':
+        this.debug(...args);
+        break;
+      default:
+        this.log(...args);
+    }
+  }
+
+  close() {
+    if (this.logStream) {
+      this.writeToFile(`=== Log Ended at ${new Date().toISOString()} ===`);
+      this.logStream.end();
+    }
   }
 }
 
-module.exports = new Logger();
+// Create singleton instance
+const logger = new Logger();
+
+// Handle process exit
+process.on('exit', () => {
+  logger.close();
+});
+
+process.on('SIGINT', () => {
+  logger.close();
+  process.exit();
+});
+
+process.on('SIGTERM', () => {
+  logger.close();
+  process.exit();
+});
+
+module.exports = logger;

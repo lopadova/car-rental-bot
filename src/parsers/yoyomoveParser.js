@@ -138,7 +138,7 @@ class YoyoMoveParser extends BaseParser {
             const qcContainer = document.querySelector('#qc-cmp2-container');
             if (qcContainer) {
               qcContainer.remove();
-              console.log('Rimosso qc-cmp2-container');
+              logger.debug('Rimosso qc-cmp2-container');
             }
             
             // Rimuovi tutti gli elementi con classi qc-cmp

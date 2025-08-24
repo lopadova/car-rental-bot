@@ -88,6 +88,7 @@ DELAY_MAX_MS=3000
 
 # Logging
 LOG_LEVEL=info
+LOG_TO_FILE=false
 ```
 
 ### 5. Setup Discord Webhook
@@ -318,11 +319,28 @@ Se un sito cambia struttura DOM, modifica il relativo parser in `src/parsers/`:
 
 ### Log e Debugging
 
-I log sono salvati in `logs/` con rotazione giornaliera:
+I log possono essere salvati su file per analisi offline e debug quando il bot gira in modalità headless schedulata.
 
+**Configurazione logging:**
+```env
+LOG_LEVEL=info         # Livelli: debug, info, warn, error
+LOG_TO_FILE=true       # Abilita logging su file
+```
+
+**Quando abilitato (`LOG_TO_FILE=true`):**
+- I log sono scritti ANCHE su file (oltre che su console)
+- Nome file: `car-rental-bot-YYYY-MM-DD_HH-MM-SS.log` 
+- Esempio: `car-rental-bot-2025-08-25_00-12-59.log`
+- Directory: `./logs` (creata automaticamente)
+- Formato: timestamp ISO, livello log, messaggio
+
+**Visualizzazione log:**
 ```bash
-# Visualizza log di oggi
-type logs\2024-01-15.log
+# Visualizza ultimi log
+dir logs\
+
+# Visualizza un log specifico
+type logs\car-rental-bot-2025-08-25_00-12-59.log
 
 # Modalità debug
 set LOG_LEVEL=debug

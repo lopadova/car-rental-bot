@@ -9,7 +9,9 @@
       "Bash(timeout 90 node:*)",
       "Bash(git add:*)",
       "Bash(rm:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(npm test:*)",
+      "Bash(npm run:*)"
     ],
     "deny": [],
     "ask": []

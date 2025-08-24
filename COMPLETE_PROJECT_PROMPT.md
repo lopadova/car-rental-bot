@@ -150,6 +150,22 @@ LOG_TO_FILE=false
 	- Ti metto un esempio di card offerta qui @.\html-card\esempio-card-sito-driveflee.html dal quale puoi tirare fuori i selettori in quanto dentro questo file trovi un offerta con marca Fiat il modello è "Fiat Panda 1.0 firefly hybrid s&s 70cv 5p.ti" importo "119€" al mese durata "48 mesi" e "Anticipo: 2.500 €"
 	- Metti i log verbosi in modo che in caso di problemi si possa fare debug bene e vedere il punto dove si rompe.
 	- Esegui il test cosi puoi verificare che tutto funzioni altrimenti autocorreggerti a ritesta fino al successo o dopo 3/4 tentativi chiedi a me che fare.
+
+- [ ] Implementare il parser autouno che estende baseParser:
+    - Url:  https://www.gruppoautouno.it/noleggio-a-lungo-termine/offerte-noleggio-aziende-e-p-iva/
+    - a quella pagina c'è intanto da accettare il cookie 
+    - poi c'è una lista ma in questa lista prendere le offerte presenti in questa pagina e poi il sito autouno implementato in realtà infondo alla pagina ha un pulstante per mostrare altri risultati che se cliccato carica in pagina altri risultati (come un infinity scroll ma cliccando il bottone). infondo alla pagina allora devi cliccare il bottone e parsare anche le nuove offerte che appaiono infondo alla pagina c'è il bottone fatto cosi:
+    ```html
+    <div class="pagination-button" data-block="#rental-offers-list">                                                                                                                                                                                                                                                                               │
+        <a class="button big" href="https://www.gruppoautouno.it/noleggio-a-lungo-termine/offerte-noleggio-aziende-e-p-iva/page/2/">Carica altri modelli</a>        
+    </div>
+    ```
+    cliccandolo appaiono altre offerte e infondo il bottone per altre macchine via via cosi finchè nell'ultima pagina non trovi pià il bottone con il link vuol dire che è finito le offerte.
+    ATTENZIONE: Nel parsing di AutoUno fai attenzione quando processi le offerte a non farlo più volte e processare le stesse offerte multiple volte per ogni pagina. Questo è dovuto al fatto che quando clicchiamo "Carica altri modelli", le offerte precedenti rimangono nel DOM e vengono estratte di nuovo.
+    - appena hai tirato fuori tutte le offerte le scremi/filtri dopo quando parsi tutte le card estratte.
+    - Ti metto un esempio di card offerta qui @.\html-card\esempio-card-sito-autouno.html dal quale puoi tirare fuori i selettori in quanto dentro questo file trovi un offerta con marca Volkswagen il modello è "Nuova Tiguan 1.5 Edition Plus 130cv" importo "€ 299" al mese durata "24 mesi" e "Anticipo €4.500"
+    - Metti i log verbosi in modo che in caso di problemi si possa fare debug bene e vedere il punto dove si rompe.
+    - Esegui il test cosi puoi verificare che tutto funzioni altrimenti autocorreggerti a ritesta fino al successo o dopo 3/4 tentativi chiedi a me che fare.
 	
 - [ ] Implementare il parser noleggiosemplice che estende baseParser:
 	- Url:  https://www.noleggiosemplice.it/noleggio-lungo-termine

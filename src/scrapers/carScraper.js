@@ -13,6 +13,7 @@ const SyntoniaParser = require('../parsers/syntonia');
 const FacileParser = require('../parsers/facile');
 const NoleggiareParser = require('../parsers/noleggiare');
 const ClarisRentParser = require('../parsers/clarisrent');
+const AutoUnoParser = require('../parsers/AutoUnoParser');
 
 class CarScraper {
   constructor() {
@@ -27,7 +28,8 @@ class CarScraper {
       syntonia: new SyntoniaParser(),
       facile: new FacileParser(),
       noleggiare: new NoleggiareParser(),
-      clarisrent: new ClarisRentParser()
+      clarisrent: new ClarisRentParser(),
+      autouno: new AutoUnoParser()
     };
   }
 

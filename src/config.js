@@ -37,6 +37,7 @@ module.exports = {
     syntonia: 'https://www.syntonia.biz/noleggio-lungo-termine',
     facile: 'https://www.facile.it/noleggio-lungo-termine-partita-iva.html?sort=monthlyFee',
     noleggiare: 'https://www.noleggiare.it/it/noleggio-lungo-termine/auto-nuove/',
-    clarisrent: 'https://clarisrent.it/it/nlt-aziende'
+    clarisrent: 'https://clarisrent.it/it/nlt-aziende',
+    autouno: 'https://www.gruppoautouno.it/noleggio-a-lungo-termine/offerte-noleggio-aziende-e-p-iva/'
   }
 };

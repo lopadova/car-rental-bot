@@ -141,7 +141,7 @@ class DiscordNotifier {
       timestamp: new Date().toISOString(),
       fields: [],
       footer: {
-        text: 'Car Rental Bot • Range: €100-350/mese • Min: 48 mesi',
+        text: `Car Rental Bot • Range: €${config.scraping.minPrice}-${config.scraping.maxPrice}/mese • Min: ${config.scraping.minDurationMonths} mesi`,
         icon_url: 'https://cdn-icons-png.flaticon.com/512/3202/3202926.png'
       }
     };

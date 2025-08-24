@@ -19,6 +19,7 @@ Il Car Rental Bot monitora automaticamente le offerte di noleggio a lungo termin
 - **Facile.it** - Comparatore di noleggio lungo termine con partita IVA
 - **Noleggiare.it** - Piattaforma specializzata per noleggio auto nuove
 - **ClarisRent** - Noleggio lungo termine per aziende e privati
+- **AutoUno** - Gruppo concessionario con offerte noleggio aziende e P.IVA
 
 ## ✨ Caratteristiche
 
